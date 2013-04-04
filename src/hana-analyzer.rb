@@ -10,6 +10,11 @@ def analyze_two_connection(s,h)
   end
 end
 
+def analyze_start_char(s,h)
+  h[s[0]] += 1
+end
+
+
 start_char = Hash.new
 start_char.default = 0
 two_char_connection = Hash.new
@@ -17,9 +22,13 @@ two_char_connection.default = 0
 
 while l = gets
   data = l.chop().split(',')
-  start_char[data[1][0]] += 1
-  analyze_two_connection(data[1],two_char_connection)
+  5.times do |i|
+    analyze_start_char(data[i+1],start_char)
+    analyze_two_connection(data[i+1],two_char_connection)
+  end
 end
 
+puts "start characters"
 p start_char
+puts "two chars connection"
 p two_char_connection
