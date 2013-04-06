@@ -108,11 +108,11 @@ puts "#!/usr/bin/env ruby"
 puts "# -*- coding: utf-8 -*-"
 puts "### 文字(列),発生回数,発生割合,積算発生割合"
 
-puts "one_char_table = "
+puts "$one_char_table = "
 pp start_char_a
 
 puts
 
-puts "two_chars_table = "
+puts "$two_chars_table = "
 pp two_char_connection_a
 
