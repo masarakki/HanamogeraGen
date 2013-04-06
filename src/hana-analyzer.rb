@@ -37,6 +37,11 @@ def calculate_accumulation(a, index)
   end
 end
 
+def print_array_in_csv(a)
+  a.each do |elem|
+    puts elem.join(",")
+  end
+end
 # main program
 
 start_char_h = Hash.new
@@ -82,6 +87,7 @@ calculate_accumulation(start_char_a,2)
 calculate_accumulation(two_char_connection_a,2)
 
 # print array
-puts start_char_a
-puts two_char_connection_a
+print_array_in_csv(start_char_a)
+print_array_in_csv(two_char_connection_a)
+
 
