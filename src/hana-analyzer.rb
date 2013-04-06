@@ -1,4 +1,7 @@
 #!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
+
+require 'pp'
 
 def analyze_two_connection(s,h)
   i = 0
@@ -27,6 +30,7 @@ def calculate_percentage(a, sum)
   a.each do |elem|
     elem.push (elem[1]/sum)
   end
+
 end
 
 def calculate_accumulation(a, index)
@@ -42,6 +46,15 @@ def print_array_in_csv(a)
     puts elem.join(",")
   end
 end
+
+def mypretty_print(a)
+  puts "["
+  a.each do |elem|
+    p elem + ","
+  end
+  puts "]"
+end
+
 # main program
 
 start_char_h = Hash.new
@@ -87,7 +100,19 @@ calculate_accumulation(start_char_a,2)
 calculate_accumulation(two_char_connection_a,2)
 
 # print array
-print_array_in_csv(start_char_a)
-print_array_in_csv(two_char_connection_a)
+#print_array_in_csv(start_char_a)
+#print_array_in_csv(two_char_connection_a)
 
+# print ruby souce table"
+puts "#!/usr/bin/env ruby"
+puts "# -*- coding: utf-8 -*-"
+puts "### 文字(列),発生回数,発生割合,積算発生割合"
+
+puts "one_char_table = "
+pp start_char_a
+
+puts
+
+puts "two_chars_table = "
+pp two_char_connection_a
 
