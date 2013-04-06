@@ -78,8 +78,8 @@ calculate_percentage(two_char_connection_a,two_char_sum)
 #p calculate_sum(two_char_connection_a,2)
 
 # sort by occurence (index == 1)
-start_char_a.sort!  {|p,q|p[1]<=>q[1]}
-two_char_connection_a.sort! {|p,q|p[1]<=>q[1]}
+start_char_a.sort!  {|p,q|(p[1]<=>q[1])*(-1)}
+two_char_connection_a.sort! {|p,q|(p[1]<=>q[1])*(-1)}
 
 # calculate accumulation
 
