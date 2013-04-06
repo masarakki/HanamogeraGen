@@ -14,11 +14,11 @@ def analyze_start_char(s,h)
   h[s[0]] += 1
 end
 
-def calculate_sum(a)
+def calculate_sum(a,index)
   sum = 0
   a.each do |x|
     # accumulate the second elemnt
-    sum += x[1]
+    sum += x[index]
   end
   sum
 end
@@ -26,6 +26,14 @@ end
 def calculate_percentage(a, sum)
   a.each do |elem|
     elem.push (elem[1]/sum)
+  end
+end
+
+def calculate_accumulation(a, index)
+  accum = 0
+  a.each do |elem|
+    accum += elem[index]
+    elem.push accum
   end
 end
 
@@ -50,13 +58,30 @@ two_char_connection_a = two_char_connection_h.to_a
 
 # calculate sum
 
-stat_char_sum =  calculate_sum(start_char_a).to_f
-two_char_sum = calculate_sum(two_char_connection_a).to_f
+stat_char_sum =  calculate_sum(start_char_a,1).to_f
+two_char_sum = calculate_sum(two_char_connection_a,1).to_f
 
 # calculate percentage
 calculate_percentage(start_char_a,stat_char_sum)
-p start_char_a
+#p start_char_a
 
 calculate_percentage(two_char_connection_a,two_char_sum)
-p two_char_connection_a
+#p two_char_connection_a
+
+# verify percentage
+#p calculate_sum(start_char_a,2)
+#p calculate_sum(two_char_connection_a,2)
+
+# sort by occurence (index == 1)
+start_char_a.sort!  {|p,q|p[1]<=>q[1]}
+two_char_connection_a.sort! {|p,q|p[1]<=>q[1]}
+
+# calculate accumulation
+
+calculate_accumulation(start_char_a,2)
+calculate_accumulation(two_char_connection_a,2)
+
+# print array
+puts start_char_a
+puts two_char_connection_a
 
