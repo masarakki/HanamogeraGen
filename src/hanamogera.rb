@@ -13,9 +13,6 @@ def gen_first_char()
       break
     end
   }
-  if 1 <= j
-    j = j - 1
-  end
   return $one_char_table[j][0]
 end
 
@@ -61,6 +58,6 @@ def generate_haiku()
 end
 
 # main program
-generate_tanka()
+#generate_tanka()
 
 
