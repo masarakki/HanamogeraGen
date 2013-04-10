@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-load 'table-100nin.rb'
+load File.join(File.dirname(__FILE__),'table-100nin.rb')
 
 def gen_first_char()
   r = rand()
