@@ -3,6 +3,18 @@
 
 require 'pp'
 
+$uni_hiragana_start = 0x3041
+$uni_hiragara_end = 0x3096
+
+def init_hiragana_hash(h)
+  i = $uni_hiragana_start
+  while i <= $uni_hiragara_end
+    h[i.chr('UTF-8')] = 0
+    i += 1
+  end
+end
+
+
 def analyze_two_connection(s,h)
   i = 0
   while (i < s.length - 1)
@@ -64,12 +76,12 @@ end
 # main program
 
 start_char_h = Hash.new
-start_char_h.default = 0
+init_hiragana_hash(start_char_h)
 two_char_connection_h = Hash.new
 two_char_connection_h.default = 0
 
 all_char_h = Hash.new
-all_char_h.default = 0
+init_hiragana_hash(all_char_h)
 
 while l = gets
   data = l.chop().split(',')
@@ -84,7 +96,6 @@ end
 start_char_a = start_char_h.to_a
 two_char_connection_a = two_char_connection_h.to_a
 all_char_a = all_char_h.to_a
-
 
 # calculate sum
 
@@ -118,7 +129,8 @@ calculate_accumulation(start_char_a,2)
 calculate_accumulation(two_char_connection_a,2)
 
 # print array
-#print_array_in_csv(start_char_a)
+print_array_in_csv(start_char_a)
+puts "-----"
 #print_array_in_csv(two_char_connection_a)
 print_array_in_csv(all_char_a)
 
