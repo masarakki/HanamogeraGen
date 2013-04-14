@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/bin/ruby
 # -*- coding: utf-8 -*-
 
 load File.join(File.dirname(__FILE__),'table-100nin.rb')
@@ -32,7 +32,7 @@ def get_next_char(c)
 end
 
 def gen_random()
-  # to be implementd
+  # //TODI to be implementd
   "あ"
 end
 
