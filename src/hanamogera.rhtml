@@ -34,23 +34,27 @@
 <BODY>
 <%
 load "hanamogera.rb" 
-%>
-<p id="tate1" class="tate">
-<%=
-gen_hanamogera(5) + "<br>" +
+generated_hanamogera = gen_hanamogera(5) + "<br>" +
 gen_hanamogera(7) + "<br>" +
 gen_hanamogera(5) + "<br>" +
 gen_hanamogera(7) + "<br>" +
 gen_hanamogera(7)
 %>
+<p id="tate1" class="tate">
+<%=
+generated_hanamogera
+%>
 </p>
 <center>
+<a href="hanamogera-page.rb">もう一首</a>
+<br>
 <img src="hanamogera-back.jpg" width=100>
-<form>
-<button>もう一首</button>
-<button>つぶやく</button>
-</form>
-<a href="hana-about.html">このサイトについて<a>
-<center>
+<br>
+<a href="hana-anout.html">このサイトについて</a>
+<br>
+<a href="https://twitter.com/share" class="twitter-share-button" data-text="<%= generated_hanamogera %>" data-lang="ja" data-hashtags="hanamogera">ツイート</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</center>
 </BODY>
 </HTML>
