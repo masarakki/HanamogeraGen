@@ -24,5 +24,5 @@ tracking ="<script type='text/javascript'>
 </script>"
 content_type = "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>"
 
-page = "<html><header>" + content_type + tracking + "</header><body>" + str + "</body></html>"
+page = "<html><head>" + content_type + tracking + "</head><body>" + str + "</body></html>"
 cgi.out(header){page}
