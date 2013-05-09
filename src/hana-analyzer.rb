@@ -35,6 +35,10 @@ def analyze_all_char(s,h)
   end
 end
 
+def analyze_tail_chars_connection(s,h)
+  h[s[-2..-1]] += 1
+end
+
 def calculate_sum(a,index)
   sum = 0
   a.each do |x|
@@ -83,12 +87,16 @@ two_char_connection_h.default = 0
 all_char_h = Hash.new
 init_hiragana_hash(all_char_h)
 
+tail_chars_h = Hash.new
+tail_chars_h.default = 0
+
 while l = gets
   data = l.chop().split(',')
   5.times do |i|
     analyze_all_char(data[i+1],all_char_h)
     analyze_start_char(data[i+1],start_char_h)
     analyze_two_connection(data[i+1],two_char_connection_h)
+    analyze_tail_chars_connection(data[i+1],tail_chars_h)
   end
 end
 
@@ -96,12 +104,14 @@ end
 start_char_a = start_char_h.to_a
 two_char_connection_a = two_char_connection_h.to_a
 all_char_a = all_char_h.to_a
+tail_chars_a = tail_chars_h.to_a
 
 # calculate sum
 
 stat_char_sum =  calculate_sum(start_char_a,1).to_f
 two_char_sum = calculate_sum(two_char_connection_a,1).to_f
 all_char_sum = calculate_sum(all_char_a,1).to_f
+tail_chars_sum = calculate_sum(tail_chars_a,1).to_f
 
 # calculate percentage
 calculate_percentage(start_char_a,stat_char_sum)
@@ -113,6 +123,9 @@ calculate_percentage(two_char_connection_a,two_char_sum)
 calculate_percentage(all_char_a,all_char_sum)
 #p all_char_a
 
+calculate_percentage(tail_chars_a,tail_chars_sum)
+#p tail_chars_a
+
 # verify percentage
 #p calculate_sum(start_char_a,2)
 #p calculate_sum(two_char_connection_a,2)
@@ -122,19 +135,20 @@ calculate_percentage(all_char_a,all_char_sum)
 start_char_a.sort!  {|p,q|(p[1]<=>q[1])*(-1)}
 two_char_connection_a.sort! {|p,q|(p[1]<=>q[1])*(-1)}
 all_char_a.sort!  {|p,q|(p[1]<=>q[1])*(-1)}
+tail_chars_a.sort! {|p,q|(p[1]<=>q[1])*(-1)}
 
 # calculate accumulation
 
 calculate_accumulation(start_char_a,2)
 calculate_accumulation(two_char_connection_a,2)
-
+calculate_accumulation(tail_chars_a,2)
 # print array
 print_array_in_csv(start_char_a)
 puts "-----"
 #print_array_in_csv(two_char_connection_a)
 print_array_in_csv(all_char_a)
-
-exit(0)
+puts "-----"
+print_array_in_csv(tail_chars_a)
 
 # print ruby souce table"
 puts "#!/usr/bin/env ruby"
@@ -149,3 +163,5 @@ puts
 puts "$two_chars_table = "
 pp two_char_connection_a
 
+puts "$tail_chars_table = "
+pp tail_chars_a
