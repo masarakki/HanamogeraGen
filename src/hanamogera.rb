@@ -85,6 +85,6 @@ def generate_haiku()
 end
 
 # main program
-generate_tanka()
+#generate_tanka()
 
 
