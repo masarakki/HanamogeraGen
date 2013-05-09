@@ -32,17 +32,44 @@ def get_next_char(c)
 end
 
 def gen_random()
-  # //TODI to be implementd
-  "あ"
+  l = $one_char_table.length
+  $one_char_table[rand(l)][0]
 end
 
+# def gen_hanamogera(i)
+#   i -= 1
+#   str = gen_first_char()
+#   i.times do 
+#     str += get_next_char(str[-1])
+#   end
+#   return str
+# end
+
 def gen_hanamogera(i)
-  i -= 1
+  return "" if i <= 2
+  i -= 2
   str = gen_first_char()
   i.times do 
     str += get_next_char(str[-1])
   end
+  str += get_tail_char(str)
   return str
+end
+
+def get_tail_char(s)
+  c = s[-1]
+  candidates = ""
+  $tail_chars_table.each { | elem |
+    if c == elem[0][0]
+      candidates += elem[0][1]
+    end
+  }
+  l  = candidates.length
+  if l == 0
+    return gen_random()
+  else
+    return candidates[rand(l)]
+  end
 end
 
 def generate_tanka()
@@ -58,6 +85,6 @@ def generate_haiku()
 end
 
 # main program
-#generate_tanka()
+generate_tanka()
 
 
