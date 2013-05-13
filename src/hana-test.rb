@@ -28,4 +28,6 @@ def link_test2
   end
 end
 
-link_test2
+#link_test2
+generate_tanka_vert()
+

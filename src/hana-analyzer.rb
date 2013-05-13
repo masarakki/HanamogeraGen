@@ -113,6 +113,8 @@ two_char_sum = calculate_sum(two_char_connection_a,1).to_f
 all_char_sum = calculate_sum(all_char_a,1).to_f
 tail_chars_sum = calculate_sum(tail_chars_a,1).to_f
 
+puts "Tail Chars sum:" + tail_chars_sum.to_s
+
 # calculate percentage
 calculate_percentage(start_char_a,stat_char_sum)
 #p start_char_a

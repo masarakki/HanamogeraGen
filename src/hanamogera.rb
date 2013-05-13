@@ -72,6 +72,35 @@ def get_tail_char(s)
   end
 end
 
+
+# transpose buf fot vertical writing
+DOUBLEBYTE_WHITESPACE = "　"
+def hana_convert_vert(inbuf)
+  outbuf = []
+  maxlen = 0
+  linecount = inbuf.length
+  inbuf.each {|l|
+    maxlen = l.length if maxlen < l.length
+  }
+  j = 0
+
+  # transpose buf
+  while j < maxlen
+    outbuf[j] =  ""
+    i = linecount - 1
+    while 0 <= i
+      if inbuf[i].length > j
+        outbuf[j] += inbuf[i][j]
+      else
+        outbuf[j] +=  DOUBLEBYTE_WHITESPACE
+      end
+      i -= 1
+    end
+    j += 1
+  end
+  outbuf
+end
+
 def generate_tanka()
   generate_haiku()
   puts gen_hanamogera(7)
@@ -84,7 +113,16 @@ def generate_haiku()
   puts gen_hanamogera(5)
 end
 
+def generate_tanka_vert()
+  buf = []
+  buf.push gen_hanamogera(5)
+  buf.push gen_hanamogera(7)
+  buf.push gen_hanamogera(5)
+  buf.push gen_hanamogera(7)
+  buf.push gen_hanamogera(7)
+  reslt = hana_convert_vert(buf)
+  reslt.each { |x| puts x}
+end
 # main program
 #generate_tanka()
-
 
