@@ -18,7 +18,7 @@
 load "hanamogera.rb"
 
 def gen_alot
-  1000000.times do 
+  100000.times do 
   puts  gen_first_char()
   end
 end
@@ -44,6 +44,32 @@ def link_test2
   end
 end
 
+def link_test3
+  # test tail connection
+  $two_chars_table.each { |e| 
+    c = e[0][1]
+    found = false
+    $tail_chars_table.each { |e2|
+      if c == e2[0][0]
+        found = true
+        break;
+      end
+    }
+    puts "tail connection not found for:" + c if found == false
+  }
+end
+
+def test_gen_hanamogera
+  10000.times { 
+    len = 5
+    str = gen_hanamogera(len)
+    puts str
+    raise if str.length != len
+  }
+end
+
 #link_test2
-generate_tanka_vert()
+#link_test3
+#generate_tanka_vert()
+test_gen_hanamogera
 

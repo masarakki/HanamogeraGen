@@ -81,7 +81,7 @@ def get_tail_char(s)
   }
   l  = candidates.length
   if l == 0
-    return gen_random()
+    return get_next_char(c)
   else
     return candidates[rand(l)]
   end
