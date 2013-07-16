@@ -68,8 +68,16 @@ def test_gen_hanamogera
   }
 end
 
+def show_table_size
+  puts "start char table size:" + $one_char_table.length.to_s
+  puts "two chars table size:" + $two_chars_table.length.to_s
+  puts "tail chars table size:" + $tail_chars_table.length.to_s
+end
+
 #link_test2
 #link_test3
 #generate_tanka_vert()
-test_gen_hanamogera
+#test_gen_hanamogera
+show_table_size
+
 

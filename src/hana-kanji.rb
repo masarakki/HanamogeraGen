@@ -7,7 +7,7 @@ require 'uri'
 require 'nokogiri'
 require 'json'
 
-len = 5
+len = 7
 hd = 3
 
 def split_at(str,n)
@@ -29,7 +29,8 @@ kanji_a = JSON.parse(resp)
 honbun = ""
 yomi = ""
 kanji_a.each do | x |
-  honbun += x[1][1]
+  i = rand(x[1].length - 1)
+  honbun += x[1][i]
   yomi += x[0]
 end
 puts honbun
