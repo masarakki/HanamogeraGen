@@ -33,6 +33,7 @@ kanji_a.each do | x |
   honbun += x[1][i]
   yomi += x[0]
 end
+
 puts honbun
 puts "(#{yomi})" 
 
