@@ -1,7 +1,6 @@
 #!/usr/bin/ruby
 # -*- coding: utf-8 -*-
 
-
 require 'net/http'
 require 'uri'
 require 'nokogiri'
@@ -29,6 +28,7 @@ kanji_a = JSON.parse(resp)
 honbun = ""
 yomi = ""
 kanji_a.each do | x |
+  # select the candidate rondomly
   i = rand(x[1].length - 1)
   honbun += x[1][i]
   yomi += x[0]
