@@ -16,6 +16,10 @@
 # should have received a copy of the GNU General Public License along
 # with HanamogeraGen. If not, see <http://www.gnu.org/licenses/>.
 
+require 'json'
+require 'uri'
+require 'net/http'
+
 load File.join(File.dirname(__FILE__),'table-100nin.rb')
 
 def gen_first_char()
@@ -138,6 +142,47 @@ def generate_tanka_vert()
   reslt = hana_convert_vert(buf)
   reslt.each { |x| puts x}
 end
+
+def gen_hanamogera_kanji(i)
+  str = gen_hanamogera(i)
+  return convert2kanji(str)
+end
+
+# convert to Kanji  support
+# 7/27/2013
+
+def convert2kanji(str)
+  # very special treatment for length = 7
+  if str.length == 7
+    str = split_at(str,3)    
+  end
+
+  url = URI.encode("http://www.google.com/transliterate?langpair=ja-Hira|ja&text=#{str}")
+  url = URI.parse(url)
+  resp = Net::HTTP.get url
+  kanji_a = JSON.parse(resp)
+
+  honbun = ""
+  yomi = ""
+  kanji_a.each do | x |
+    # select the candidate rondomly
+    i = rand(x[1].length - 1)
+    honbun += x[1][i]
+    yomi += x[0]
+  end
+  return honbun
+end
+
+def split_at(str,n)
+  str[0..(n-1)] + "," + str[n..(-1)]
+end
+
+def generate_tanka_kanji()
+  [5,7,5,7,7].each { |i|
+    puts gen_hanamogera_kanji(i)  
+  }
+end
+
 # main program
-#generate_tanka()
+#generate_tanka_kanji()
 
