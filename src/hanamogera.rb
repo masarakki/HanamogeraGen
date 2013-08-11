@@ -166,9 +166,23 @@ def convert2kanji(str)
   yomi = ""
   kanji_a.each do | x |
     # select the candidate rondomly
-    i = rand(x[1].length - 1)
-    honbun += x[1][i]
-    yomi += x[0]
+    #i = rand(x[1].length - 1)
+    # check bad conversion
+    originalHiragana = x[0]
+    yomi += originalHiragana
+    candIsGood = false
+    for i in 0..(x[1].length-1)
+      candstr = x[1][i]
+      next if containBadChar(candstr)
+      # candidate is good
+      candIsGood = true
+      break
+    end
+    if candIsGood
+      honbun += candstr
+    else
+      honbun += originalHiragana
+    end
   end
   return honbun
 end
@@ -181,6 +195,28 @@ def generate_tanka_kanji()
   [5,7,5,7,7].each { |i|
     puts gen_hanamogera_kanji(i)  
   }
+end
+
+# check bad kanji conversion
+
+$range_hankaku_alpha = "A".."z"
+$range_zenkaku_alpha1 = "Ａ".."Ｚ"
+$range_zenkaku_alpha2 = "ａ".."ｚ"
+$range_zenkaku_katakana = "ァ".."ヺ"
+
+def checkString(s,range)
+  for c in range
+    return true if s.include? c
+  end
+  return false
+end
+
+def containBadChar(s)
+  return true if checkString(s,$range_hankaku_alpha)
+  return true if checkString(s,$range_zenkaku_alpha1)
+  return true if checkString(s,$range_zenkaku_alpha2)
+  return true if checkString(s,$range_zenkaku_katakana)
+  return false
 end
 
 # main program
