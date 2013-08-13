@@ -169,10 +169,11 @@ def convert2kanji(str)
     #i = rand(x[1].length - 1)
     # check bad conversion
     originalHiragana = x[0]
+    candidatesList = x[1]
     yomi += originalHiragana
     candIsGood = false
-    for i in 0..(x[1].length-1)
-      candstr = x[1][i]
+    for i in 0..(candidatesList.length-1)
+      candstr = candidatesList[i]
       next if containBadChar(candstr)
       # candidate is good
       candIsGood = true
